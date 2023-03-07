@@ -1,2 +1,6 @@
 venv
 .pytest_cache
+<<<<<<< HEAD
+=======
+__pycache__
+>>>>>>> f8fa93b (Lesson 2: Introduction to pytest)
