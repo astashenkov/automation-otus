@@ -1,2 +1,4 @@
 # Directories
 .idea/
+venv
+.pytest_cache
