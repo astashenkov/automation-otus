@@ -2,7 +2,8 @@
 .idea/
 venv
 .pytest_cache
-__pycache__/
+__pycache__
+*__pycache__*
 
-
-*.py[cod]
+# Files
+*.pyc[cod]
