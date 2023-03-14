@@ -44,14 +44,14 @@ class TestFigures:
             f'Wrong square perimeter. Should be {self.expected_square_perimeter}, but {self.square.perimeter}'
         assert self.square.area == self.expected_square_area, \
             f'Wrong square area. Should be {self.expected_square_area}, but {self.square.area}'
-        assert self.square.add_area(self.triangle) == round(self.square.area + self.triangle.area, 2), \
-            f'Wrong summ of areas. Should be {round(self.square.area + self.triangle.area, 2)}, ' \
+        assert self.square.add_area(self.triangle) == round(self.expected_square_area + self.expected_triangle_area, 2), \
+            f'Wrong summ of areas. Should be {round(self.expected_square_area + self.expected_triangle_area, 2)}, ' \
             f'but {self.square.add_area(self.triangle)}'
-        assert self.square.add_area(self.circle) == round(self.square.area + self.circle.area, 2), \
-            f'Wrong summ of areas. Should be {round(self.square.area + self.circle.area, 2)}, ' \
+        assert self.square.add_area(self.circle) == round(self.expected_square_area + self.expected_circle_area, 2), \
+            f'Wrong summ of areas. Should be {round(self.expected_square_area + self.expected_circle_area, 2)}, ' \
             f'but {self.square.add_area(self.circle)}'
-        assert self.square.add_area(self.rectangle) == round(self.square.area + self.rectangle.area, 2), \
-            f'Wrong summ of areas. Should be {round(self.square.area + self.rectangle.area, 2)}, ' \
+        assert self.square.add_area(self.rectangle) == round(self.expected_square_area + self.expected_rectangle_area, 2), \
+            f'Wrong summ of areas. Should be {round(self.expected_square_area + self.expected_rectangle_area, 2)}, ' \
             f'but {self.square.add_area(self.rectangle)}'
 
     def test_circle_properties(self):
@@ -61,14 +61,14 @@ class TestFigures:
             f'Wrong circle perimeter. Should be {self.expected_circle_perimeter}, but {self.circle.perimeter}'
         assert self.circle.area == self.expected_circle_area, \
             f'Wrong circle area. Should be {self.expected_circle_area}, but {self.circle.area}'
-        assert self.circle.add_area(self.triangle) == round(self.circle.area + self.triangle.area, 2), \
-            f'Wrong summ of areas. Should be {round(self.circle.area + self.triangle.area, 2)}, ' \
+        assert self.circle.add_area(self.triangle) == round(self.expected_circle_area + self.expected_triangle_area, 2), \
+            f'Wrong summ of areas. Should be {round(self.expected_circle_area + self.expected_triangle_area, 2)}, ' \
             f'but {self.circle.add_area(self.triangle)}'
-        assert self.circle.add_area(self.square) == round(self.circle.area + self.square.area, 2), \
-            f'Wrong summ of areas. Should be {round(self.circle.area + self.square.area, 2)}, ' \
+        assert self.circle.add_area(self.square) == round(self.expected_circle_area + self.expected_square_area, 2), \
+            f'Wrong summ of areas. Should be {round(self.expected_circle_area + self.expected_square_area, 2)}, ' \
             f'but {self.circle.add_area(self.square)}'
-        assert self.circle.add_area(self.rectangle) == round(self.circle.area + self.rectangle.area, 2), \
-            f'Wrong summ of areas. Should be {round(self.circle.area + self.rectangle.area, 2)}, ' \
+        assert self.circle.add_area(self.rectangle) == round(self.expected_circle_area + self.expected_rectangle_area, 2), \
+            f'Wrong summ of areas. Should be {round(self.expected_circle_area + self.expected_rectangle_area, 2)}, ' \
             f'but {self.circle.add_area(self.rectangle)}'
 
     def test_rectangle_properties(self):
@@ -78,13 +78,14 @@ class TestFigures:
             f'Wrong rectangle perimeter. Should be {self.expected_rectangle_perimeter}, but {self.rectangle.perimeter}'
         assert self.rectangle.area == self.expected_rectangle_area, \
             f'Wrong rectangle area. Should be {self.expected_rectangle_area}, but {self.rectangle.area}'
-        assert self.rectangle.add_area(self.triangle) == round(self.rectangle.area + self.triangle.area, 2), \
-            f'Wrong summ of areas. Should be {round(self.rectangle.area + self.triangle.area, 2)}, ' \
+        assert self.rectangle.add_area(self.triangle) == round(self.expected_rectangle_area + self.expected_triangle_area, 2), \
+            f'Wrong summ of areas. Should be {round(self.expected_rectangle_area + self.expected_triangle_area, 2)}, ' \
             f'but {self.rectangle.add_area(self.triangle)}'
-        assert self.rectangle.add_area(self.circle) == round(self.rectangle.area + self.circle.area, 2), \
-            f'Wrong summ of areas. Should be {round(self.rectangle.area + self.circle.area, 2)}, but {self.rectangle.add_area(self.circle)}'
-        assert self.rectangle.add_area(self.square) == round(self.rectangle.area + self.square.area, 2), \
-            f'Wrong summ of areas. Should be {round(self.rectangle.area + self.square.area, 2)}, ' \
+        assert self.rectangle.add_area(self.circle) == round(self.expected_rectangle_area + self.expected_circle_area, 2), \
+            f'Wrong summ of areas. Should be {round(self.expected_rectangle_area + self.expected_circle_area, 2)}, ' \
+            f'but {self.rectangle.add_area(self.circle)}'
+        assert self.rectangle.add_area(self.square) == round(self.expected_rectangle_area + self.expected_square_area, 2), \
+            f'Wrong summ of areas. Should be {round(self.expected_rectangle_area + self.expected_square_area, 2)}, ' \
             f'but {self.rectangle.add_area(self.square)}'
 
     def test_triangle_properties(self):
@@ -94,14 +95,14 @@ class TestFigures:
             f'Wrong triangle perimeter. Should be {self.expected_triangle_perimeter}, but {self.triangle.perimeter}'
         assert self.triangle.area == self.expected_triangle_area, \
             f'Wrong triangle area. Should be {self.expected_triangle_area}, but {self.triangle.area}'
-        assert self.triangle.add_area(self.square) == round(self.triangle.area + self.square.area, 2), \
-            f'Wrong summ of areas. Should be {round(self.triangle.area + self.square.area, 2)}, ' \
+        assert self.triangle.add_area(self.square) == round(self.expected_triangle_area + self.expected_square_area, 2), \
+            f'Wrong summ of areas. Should be {round(self.expected_triangle_area + self.expected_square_area, 2)}, ' \
             f'but {self.triangle.add_area(self.square)}'
-        assert self.triangle.add_area(self.circle) == round(self.triangle.area + self.circle.area, 2), \
-            f'Wrong summ of areas. Should be {round(self.triangle.area + self.circle.area, 2)}, ' \
+        assert self.triangle.add_area(self.circle) == round(self.expected_triangle_area + self.expected_circle_area, 2), \
+            f'Wrong summ of areas. Should be {round(self.expected_triangle_area + self.expected_circle_area, 2)}, ' \
             f'but {self.triangle.add_area(self.circle)}'
-        assert self.triangle.add_area(self.rectangle) == round(self.triangle.area + self.rectangle.area, 2), \
-            f'Wrong summ of areas. Should be {round(self.triangle.area + self.rectangle.area, 2)}, ' \
+        assert self.triangle.add_area(self.rectangle) == round(self.expected_triangle_area + self.expected_rectangle_area, 2), \
+            f'Wrong summ of areas. Should be {round(self.expected_triangle_area + self.expected_rectangle_area, 2)}, ' \
             f'but {self.triangle.add_area(self.rectangle)}'
 
     @pytest.mark.xfail
