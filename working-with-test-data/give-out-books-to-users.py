@@ -22,7 +22,7 @@ with open('books.csv', 'r', newline='') as csv_file, open('users.json', 'r') as 
                 {
                     'title': book['Title'],
                     'author': book['Author'],
-                    'pages': book['Pages'],
+                    'pages': int(book['Pages']),
                     'genre': book['Genre']
                 }
             )
