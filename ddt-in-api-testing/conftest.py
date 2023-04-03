@@ -16,11 +16,21 @@ def pytest_addoption(parser):
     )
 
 
-@pytest.fixture(scope="function")
-def url(request):
+@pytest.fixture()
+def url(request) -> str:
     return request.config.getoption('--url')
 
 
-@pytest.fixture(scope="function")
-def status_code(request):
+@pytest.fixture()
+def status_code(request) -> int:
     return int(request.config.getoption('--status_code'))
+
+
+@pytest.fixture()
+def user_post() -> dict:
+    return {
+        'id': 42,
+        'title': 'Test user title',
+        'body': 'Test user body',
+        'userId': 42
+    }
