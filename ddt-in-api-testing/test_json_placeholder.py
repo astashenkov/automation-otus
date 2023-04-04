@@ -32,7 +32,7 @@ class TestPlaceHolder:
         schema_validator = cerberus.Validator(schema)
 
         assert response.status_code == 201, "Can't create user post."
-        assert schema_validator(response.json()), 'Wrong JSON schema received from POST request.'
+        assert schema_validator(response.json()), f'Wrong schema validation {schema_validator.errors}.'
 
     @pytest.mark.placeholder
     def test_replace_user_post(self, user_post):
