@@ -30,7 +30,7 @@ def status_code(request) -> int:
 def user_post() -> dict:
     return {
         'id': 42,
-        'title': 'Test user title',
-        'body': 'Test user body',
+        'title': 'Test user post title',
+        'body': 'Test user post body',
         'userId': 42
     }

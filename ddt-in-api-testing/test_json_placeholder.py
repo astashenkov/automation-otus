@@ -5,6 +5,12 @@ import requests
 
 class TestPlaceHolder:
     URL = 'https://jsonplaceholder.typicode.com/'
+    SCHEMA = {
+        'id': {'type': 'integer'},
+        'title': {'type': 'string'},
+        'body': {'type': 'string'},
+        'userId': {'type': 'integer'}
+    }
 
     @pytest.mark.placeholder
     @pytest.mark.parametrize('route, expected_code', [
@@ -23,13 +29,7 @@ class TestPlaceHolder:
     @pytest.mark.placeholder
     def test_create_user_post(self, user_post):
         response = requests.post(f'{self.URL}posts', json=user_post)
-        schema = {
-            'id': {'type': 'integer'},
-            'title': {'type': 'string'},
-            'body': {'type': 'string'},
-            'userId': {'type': 'integer'}
-        }
-        schema_validator = cerberus.Validator(schema)
+        schema_validator = cerberus.Validator(self.SCHEMA)
 
         assert response.status_code == 201, "Can't create user post."
         assert schema_validator(response.json()), f'Wrong schema validation {schema_validator.errors}.'
@@ -37,13 +37,7 @@ class TestPlaceHolder:
     @pytest.mark.placeholder
     def test_replace_user_post(self, user_post):
         response = requests.put(f'{self.URL}posts/1', json=user_post)
-        schema = {
-            'id': {'type': 'integer'},
-            'title': {'type': 'string'},
-            'body': {'type': 'string'},
-            'userId': {'type': 'integer'}
-        }
-        schema_validator = cerberus.Validator(schema)
+        schema_validator = cerberus.Validator(self.SCHEMA)
 
         assert response.status_code == 200, f'Request is fail with {response.status_code} code.'
         assert schema_validator(response.json()), f'Wrong schema validation {schema_validator.errors}.'
