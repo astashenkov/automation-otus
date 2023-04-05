@@ -3,15 +3,14 @@ import pytest
 import requests
 
 
+@pytest.mark.open_brewery_db
 class TestOpenBreweryDB:
     URL = 'https://api.openbrewerydb.org/v1/breweries/'
 
-    @pytest.mark.open_brewery_db
     def test_get_all_breweries(self):
         response = requests.get(self.URL)
         assert response.status_code == 200, f'Request is fail with {response.status_code} code.'
 
-    @pytest.mark.open_brewery_db
     @pytest.mark.parametrize('query, city', [
         ('san_diego', 'San Diego'),
         ('new_york', 'New York'),
@@ -23,7 +22,6 @@ class TestOpenBreweryDB:
         assert response.status_code == 200, f'Request is fail with {response.status_code} code.'
         assert response.json()[0]["city"] == city, f'Wrong city in the response – {response.json()[0]["city"]}'
 
-    @pytest.mark.open_brewery_db
     @pytest.mark.parametrize('size, expected_size', [
         (50, 50),
         (51, 50),
@@ -39,7 +37,6 @@ class TestOpenBreweryDB:
         assert response.status_code == 200, f'Request is fail with {response.status_code} code.'
         assert len(response.json()) == expected_size, f'Unexpected size of breweries – {len(response.json())}.'
 
-    @pytest.mark.open_brewery_db
     @pytest.mark.parametrize('word, quantity, expected_quantity', [
         ('dog', 5, 5),
         ('kiwi', 10, 0),
@@ -53,7 +50,6 @@ class TestOpenBreweryDB:
         assert response.status_code == 200, f'Request is fail with {response.status_code} code.'
         assert len(response.json()) == expected_quantity, 'Unexpected quantity of breweries.'
 
-    @pytest.mark.open_brewery_db
     @pytest.mark.parametrize('parameter', [
         '',
         '?by_country=south_korea',
