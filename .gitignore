@@ -7,5 +7,5 @@ __pycache__
 
 # Files
 *.pyc[cod]
-working-with-test-data/books.csv
-working-with-test-data/users.json
+tests/working_with_test_data/books.csv
+tests/working_with_test_data/users.json
