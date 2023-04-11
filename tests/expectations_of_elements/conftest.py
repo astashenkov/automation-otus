@@ -1,50 +1,39 @@
 import pytest
 from selenium import webdriver
-from selenium.webdriver.chrome.options import Options as ChromeOptions
 from selenium.webdriver.chrome.service import Service as ChromeService
-from selenium.webdriver.firefox.options import Options as FirefoxOptions
 from selenium.webdriver.firefox.service import Service as FirefoxService
-from selenium.webdriver.safari.options import Options as SafariOptions
-from selenium.webdriver.safari.service import Service as SafariService
-from selenium.webdriver.edge.options import Options as EdgeOptions
 from selenium.webdriver.edge.service import Service as EdgeService
+from webdriver_manager.chrome import ChromeDriverManager
+from webdriver_manager.firefox import GeckoDriverManager
+from webdriver_manager.microsoft import EdgeChromiumDriverManager
 
 
 def pytest_addoption(parser):
     parser.addoption(
         '--browser',
         default='chrome',
-        help='Choose browser: Chrome, FireFox, Safari or Edge.')
+        help='Choose browser: Chrome, FireFox, Safari or Edge.'
+    )
+    parser.addoption(
+        '--url',
+        default='https://www.opencart.com/',
+        help='Choose base URL.'
+    )
 
 
 @pytest.fixture()
 def browser(request):
-    CHROMEDRIVER_PATH = 'drivers/chromedriver'
-    FIREFOXDRIVER_PATH = 'drivers/geckodriver'
-    EDGEDRIVER_PATH = 'drivers/'
     browser_name = request.config.getoption('browser')
 
     match browser_name:
         case 'chrome':
-            options = ChromeOptions()
-            options.page_load_strategy = 'normal'
-            service = ChromeService(executable_path=CHROMEDRIVER_PATH)
-            driver = webdriver.Chrome(service=service, options=options)
+            driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()))
         case 'firefox':
-            options = FirefoxOptions()
-            options.page_load_strategy = 'normal'
-            service = FirefoxService(executable_path=FIREFOXDRIVER_PATH)
-            driver = webdriver.Firefox(service=service, options=options)
+            driver = webdriver.Firefox(service=FirefoxService(GeckoDriverManager().install()))
         case 'safari':
-            options = SafariOptions()
-            options.page_load_strategy = 'normal'
-            service = SafariService()
-            driver = webdriver.Safari(service=service, options=options)
+            driver = webdriver.Safari()
         case 'edge':
-            options = EdgeOptions()
-            options.page_load_strategy = 'normal'
-            service = EdgeService(executable_path=EDGEDRIVER_PATH)
-            driver = webdriver.Edge(service=service, options=options)
+            driver = webdriver.Edge(service=EdgeService(EdgeChromiumDriverManager().install()))
         case _:
             raise ValueError(f'Unsupported browser: {browser_name}')
 
