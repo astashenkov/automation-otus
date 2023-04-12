@@ -5,14 +5,14 @@ from selenium.webdriver.support.wait import WebDriverWait
 
 class MainPage:
 
-    def __init__(self, driver, url='https://www.opencart.com/'):
+    def __init__(self, driver, url='http://www.opencart.com/'):
         self._driver = driver
         self._url = url
 
     def open(self) -> None:
         self._driver.get(self._url)
 
-    def is_element_present(self, element) -> bool:
+    def is_element_present(self, element: tuple) -> bool:
         try:
             WebDriverWait(self._driver, 1).until(EC.presence_of_element_located(element))
         except TimeoutException:
