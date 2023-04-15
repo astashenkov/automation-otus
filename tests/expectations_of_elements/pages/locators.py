@@ -36,6 +36,6 @@ class ProductCardPageLocators:
 class LoginAdminPage:
     FIRST_NAME_INPUT = (By.CSS_SELECTOR, '#input-username')
     PASSWORD_INPUT = (By.CSS_SELECTOR, '#input-password')
-    LOGIN_BUTTON = (By.XPATH, "//*[@type='submit']")
     FORGOT_PASSWORD = (By.LINK_TEXT, 'Forgotten Password')
+    LOGIN_BUTTON = (By.XPATH, "//*[@type='submit']")
     OPENCART_LINK = (By.XPATH, "//*[text()='OpenCart']")
