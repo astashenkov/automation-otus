@@ -16,7 +16,7 @@ def pytest_addoption(parser):
     )
     parser.addoption(
         '--url',
-        default='http://192.168.0.5:81/',
+        default='http://192.168.0.5:8081/',
         help='Choose base URL.'
     )
 

@@ -7,7 +7,7 @@ class MainPage:
 
     def __init__(self, driver):
         self._driver = driver
-        self._url = driver.browser_base_url
+        self._url = f'{driver.browser_base_url}en-gb?route=common/home'
 
     def open(self) -> None:
         self._driver.get(self._url)
