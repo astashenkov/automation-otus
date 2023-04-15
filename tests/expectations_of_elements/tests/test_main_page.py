@@ -6,32 +6,32 @@ from ..pages.locators import MainPageLocators
 
 @pytest.mark.main_page
 class TestMainPage:
-    def test_hero_banner_present(self, browser):
+    def test_carousel_banner_present(self, browser):
         main_page = MainPage(browser)
-        hero_banner_locator = MainPageLocators.HERO_BANNER
+        carousel_banner_locator = MainPageLocators.CAROUSEL_BANNER
         main_page.open()
-        assert main_page.is_element_present(hero_banner_locator), 'Hero banner is not present on main page.'
+        assert main_page.is_element_present(carousel_banner_locator), 'Carousel banner is not present on main page.'
 
-    def test_marketplace_section_present(self, browser):
+    def test_logo_main_present(self, browser):
         main_page = MainPage(browser)
-        marketplace_section = MainPageLocators.MARKETPLACE_SECTION
+        logo_main = MainPageLocators.LOGO_MAIN
         main_page.open()
-        assert main_page.is_element_present(marketplace_section), 'Marketplace section is not present on main page.'
+        assert main_page.is_element_present(logo_main), 'Logo OpenCart is not present on main page.'
 
-    def test_login_button_present(self, browser):
+    def test_page_header_present(self, browser):
         main_page = MainPage(browser)
-        login_button = MainPageLocators.LOGIN_BUTTON
+        page_header = MainPageLocators.PAGE_HEADER
         main_page.open()
-        assert main_page.is_element_present(login_button), 'Login button is not present on main page.'
+        assert main_page.is_element_present(page_header), 'Header is not present on main page.'
 
-    def test_register_button_present(self, browser):
+    def test_cart_items_dropdown_present(self, browser):
         main_page = MainPage(browser)
-        register_button = MainPageLocators.REGISTER_BUTTON
+        cart_items_dropdown = MainPageLocators.CART_ITEMS
         main_page.open()
-        assert main_page.is_element_present(register_button), 'Register button is not present on main page.'
+        assert main_page.is_element_present(cart_items_dropdown), 'Items dropdown is not present on main page.'
 
-    def test_business_section_present(self, browser):
+    def test_search_input_present(self, browser):
         main_page = MainPage(browser)
-        business_section = MainPageLocators.BUSINESS_SECTION
+        search_input = MainPageLocators.SEARCH_INPUT
         main_page.open()
-        assert main_page.is_element_present(business_section), 'Business section is not present on main page.'
+        assert main_page.is_element_present(search_input), 'Search input is not present on main page.'

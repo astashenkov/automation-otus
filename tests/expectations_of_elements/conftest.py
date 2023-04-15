@@ -16,7 +16,7 @@ def pytest_addoption(parser):
     )
     parser.addoption(
         '--url',
-        default='https://www.opencart.com/',
+        default='http://192.168.0.5:81/',
         help='Choose base URL.'
     )
 
@@ -36,6 +36,8 @@ def browser(request):
             driver = webdriver.Edge(service=EdgeService(EdgeChromiumDriverManager().install()))
         case _:
             raise ValueError(f'Unsupported browser: {browser_name}')
+
+    driver.browser_base_url = request.config.getoption('url')
 
     driver.maximize_window()
     yield driver
