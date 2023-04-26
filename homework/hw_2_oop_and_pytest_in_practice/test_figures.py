@@ -4,7 +4,7 @@ import sys
 
 import pytest
 
-sys.path.insert(1, os.path.join(sys.path[0], '../../src/'))
+sys.path.insert(1, os.path.join(sys.path[0], 'src/'))
 from Triangle import Triangle
 from Circle import Circle
 from Rectangle import Rectangle
