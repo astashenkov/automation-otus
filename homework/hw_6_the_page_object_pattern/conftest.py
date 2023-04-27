@@ -1,13 +1,13 @@
 import pytest
 
 from selenium import webdriver
-from selenium.webdriver.chrome.service import Service as ChromeService
-from webdriver_manager.chrome import ChromeDriverManager
-from selenium.webdriver.edge.service import Service as EdgeService
-from webdriver_manager.microsoft import EdgeChromiumDriverManager
-from selenium.webdriver.firefox.service import Service as FirefoxService
-from webdriver_manager.firefox import GeckoDriverManager
 from selenium.webdriver.chrome import service
+from selenium.webdriver.chrome.service import Service as ChromeService
+from selenium.webdriver.edge.service import Service as EdgeService
+from selenium.webdriver.firefox.service import Service as FirefoxService
+from webdriver_manager.chrome import ChromeDriverManager
+from webdriver_manager.firefox import GeckoDriverManager
+from webdriver_manager.microsoft import EdgeChromiumDriverManager
 from webdriver_manager.opera import OperaDriverManager
 
 
@@ -15,13 +15,19 @@ def pytest_addoption(parser):
     parser.addoption(
         '--browser',
         default='chrome',
-        help='Choose browser: Chrome, FireFox, Safari or Edge.'
+        help='Choose browser: Chrome, FireFox, Safari, Opera or Edge.'
+    )
+    parser.addoption(
+        '--url',
+        default='http://192.168.0.5',
+        help='Choose base URL'
     )
 
 
 @pytest.fixture()
 def driver(request):
-    browser_name = request.config.getoption('browser')
+    browser_name = request.config.getoption('browser').lower()
+
     match browser_name:
         case 'chrome':
             driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()))
@@ -41,5 +47,9 @@ def driver(request):
             driver = webdriver.Edge(service=EdgeService(EdgeChromiumDriverManager().install()))
         case _:
             raise ValueError(f'Unsupported browser: {browser_name}')
+
+    driver.browser_base_url = request.config.getoption('url')
+
     yield driver
+
     driver.quit()
