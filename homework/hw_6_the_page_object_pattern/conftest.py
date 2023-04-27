@@ -1,4 +1,5 @@
 import pytest
+from flask import session
 
 from selenium import webdriver
 from selenium.webdriver.chrome import service
@@ -54,3 +55,8 @@ def driver(request):
     yield driver
 
     driver.quit()
+
+
+@pytest.fixture()
+def user_token():
+    return session.get('user_token')
