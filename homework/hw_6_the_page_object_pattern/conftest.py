@@ -19,7 +19,7 @@ def pytest_addoption(parser):
     )
     parser.addoption(
         '--url',
-        default='http://192.168.0.5',
+        default='http://192.168.0.5:8081/',
         help='Choose base URL'
     )
 
@@ -49,6 +49,7 @@ def driver(request):
             raise ValueError(f'Unsupported browser: {browser_name}')
 
     driver.browser_base_url = request.config.getoption('url')
+    driver.maximize_window()
 
     yield driver
 
