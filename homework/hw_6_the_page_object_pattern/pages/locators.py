@@ -73,8 +73,14 @@ class AdminPageLocators:
     This is a class with locators for the admin page.
     Here you can find locators for adding, removing and selecting products.
     """
-    ADD_NEW_BUTTON = (By.CSS_SELECTOR, '[data-bs-original-title="Add New"]')
+    ADD_NEW_PRODUCT_BUTTON = (By.CSS_SELECTOR, '.page-header .btn-primary:nth-child(2)')
+    DATA_TAB = (By.CSS_SELECTOR, 'ul.nav-tabs li:nth-child(2)')
     DELETE_BUTTON = (By.CSS_SELECTOR, '.btn.btn-danger')
-    SUCCESS_DELETE_ALERT = (By.CSS_SELECTOR, 'alert.alert-success.alert-dismissible')
+    INPUT_KEYWORD = (By.CSS_SELECTOR, '#input-keyword-0-1')
+    INPUT_MODEL = (By.CSS_SELECTOR, '#input-model')
+    META_TAG_TITLE = (By.CSS_SELECTOR, '#input-meta-title-1')
+    PRODUCT_NAME_INPUT = (By.CSS_SELECTOR, '#input-name-1')
+    SEO_TAB = (By.CSS_SELECTOR, 'ul.nav-tabs li:nth-child(11)')
+    SUBMIT_CREATE_PRODUCT_BUTTON = (By.CSS_SELECTOR, '[type="submit"]')
     UPPER_PRODUCT_CHECKBOX = (By.CSS_SELECTOR, '#form-product tbody td:nth-child(1) input')
     UPPER_PRODUCT_TITLE = (By.CSS_SELECTOR, '#form-product tbody td:nth-child(3)')
