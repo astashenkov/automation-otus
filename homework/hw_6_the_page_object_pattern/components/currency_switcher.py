@@ -1,4 +1,6 @@
 from selenium.webdriver.common.by import By
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.support.wait import WebDriverWait
 
 
 class CurrencySwitcher:
@@ -12,19 +14,27 @@ class CurrencySwitcher:
         self._driver = driver
 
     def open_dropdown(self):
-        self._driver.find_element(*self.CURRENCY_DROPDOWN).click()
+        WebDriverWait(self._driver, 2).until(
+            EC.presence_of_element_located(self.CURRENCY_DROPDOWN)
+        ).click()
 
     def choose_euro(self):
         self.open_dropdown()
-        self._driver.find_element(*self.CHOSE_EURO).click()
+        WebDriverWait(self._driver, 2).until(
+            EC.presence_of_element_located(self.CHOSE_EURO)
+        ).click()
 
     def choose_pound(self):
         self.open_dropdown()
-        self._driver.find_element(*self.CHOSE_POUND).click()
+        WebDriverWait(self._driver, 2).until(
+            EC.presence_of_element_located(self.CHOSE_POUND)
+        ).click()
 
     def choose_dollar(self):
         self.open_dropdown()
-        self._driver.find_element(*self.CHOSE_DOLLAR).click()
+        WebDriverWait(self._driver, 2).until(
+            EC.presence_of_element_located(self.CHOSE_DOLLAR)
+        ).click()
 
     @property
     def selected_currency(self):

@@ -24,7 +24,9 @@ class RegisterPageLocators:
     LAST_NAME_INPUT = (By.CSS_SELECTOR, '#input-lastname')
     EMAIL_INPUT = (By.CSS_SELECTOR, '#input-email')
     PASSWORD_INPUT = (By.CSS_SELECTOR, '#input-password')
+    PRIVACY_POLICY = (By.CSS_SELECTOR, '[name="agree"]')
     SUBMIT_BUTTON = (By.XPATH, '//*[@type="submit"]')
+    SUCCESS_MESSAGE = (By.TAG_NAME, 'h1')
 
 
 class CatalogPageLocators:
