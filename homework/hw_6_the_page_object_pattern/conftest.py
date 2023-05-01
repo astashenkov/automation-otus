@@ -1,5 +1,4 @@
 import pytest
-from flask import session
 
 from selenium import webdriver
 from selenium.webdriver.chrome import service
@@ -20,7 +19,7 @@ def pytest_addoption(parser):
     )
     parser.addoption(
         '--url',
-        default='http://192.168.0.5:8081/',
+        default='http://192.168.0.40:8081/',
         help='Choose base URL'
     )
 
@@ -55,8 +54,3 @@ def driver(request):
     yield driver
 
     driver.quit()
-
-
-@pytest.fixture()
-def user_token():
-    return session.get('user_token')
