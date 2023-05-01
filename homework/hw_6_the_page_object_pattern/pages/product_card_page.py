@@ -1,5 +1,5 @@
-from .main_page import MainPage
 from urllib.parse import urljoin
+from .main_page import MainPage
 
 
 class ProductCardPage(MainPage):

@@ -1,7 +1,10 @@
-from .admin_page import AdminPage
-from .locators import LoginAdminPage
-from .main_page import MainPage
 from urllib.parse import urljoin
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.wait import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+from .locators import LoginAdminPageLocators
+from .main_page import MainPage
+from .admin_page import AdminPage
 
 
 class LoginToAdminPage(MainPage):
@@ -10,8 +13,17 @@ class LoginToAdminPage(MainPage):
         self._url = urljoin(driver.browser_base_url, '/administration')
 
     def login(self) -> 'AdminPage':
-        self._driver.find_element(*LoginAdminPage.FIRST_NAME_INPUT).send_keys('user')
-        self._driver.find_element(*LoginAdminPage.PASSWORD_INPUT).send_keys('bitnami')
-        self._driver.find_element(*LoginAdminPage.LOGIN_BUTTON).click()
+        WebDriverWait(self._driver, 2).until(
+            EC.presence_of_element_located(LoginAdminPageLocators.FIRST_NAME_INPUT)
+        ).send_keys('user')
+        WebDriverWait(self._driver, 2).until(
+            EC.presence_of_element_located(LoginAdminPageLocators.PASSWORD_INPUT)
+        ).send_keys('bitnami')
+        WebDriverWait(self._driver, 2).until(
+            EC.presence_of_element_located(LoginAdminPageLocators.LOGIN_BUTTON)
+        ).click()
+        WebDriverWait(self._driver, 2).until(
+            EC.presence_of_element_located((By.CSS_SELECTOR, '#column-left'))
+        )
 
-        return AdminPage(self._driver)
+        return AdminPage(self._driver, self._driver.current_url)

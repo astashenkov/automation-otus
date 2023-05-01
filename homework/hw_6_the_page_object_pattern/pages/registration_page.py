@@ -1,12 +1,11 @@
 import time
-
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.keys import Keys
+from urllib.parse import urljoin
 
 from .locators import RegisterPageLocators
 from .main_page import MainPage
-from urllib.parse import urljoin
 
 
 class RegistrationPage(MainPage):
@@ -42,7 +41,7 @@ class RegistrationPage(MainPage):
         ).click()
 
     def is_success_created_account(self) -> bool:
-        time.sleep(3)
+        time.sleep(3)  # Waiting to go to the page with the message about successful user creation
         created_message = self._driver.find_element(*RegisterPageLocators.SUCCESS_MESSAGE).text
         if created_message == 'Your Account Has Been Created!':
             return True
