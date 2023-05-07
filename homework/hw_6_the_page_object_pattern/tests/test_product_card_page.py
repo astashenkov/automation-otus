@@ -32,8 +32,8 @@ class TestProductCardPage:
         product_card_page = ProductCardPage(driver)
         product_card_page.open()
         assert product_card_page.is_element_present(
-            ProductCardPageLocators.OPTIONS_DROPDOWN
-        ), 'Options dropdown is not present on product card page.'
+            ProductCardPageLocators.REVIEW_TAB
+        ), 'Review tab is not present on product card page.'
 
     def test_grid_button_present(self, driver):
         product_card_page = ProductCardPage(driver)

@@ -26,7 +26,7 @@ class RegisterPageLocators:
     PASSWORD_INPUT = (By.CSS_SELECTOR, '#input-password')
     PRIVACY_POLICY = (By.CSS_SELECTOR, '[name="agree"]')
     SUBMIT_BUTTON = (By.XPATH, '//*[@type="submit"]')
-    SUCCESS_MESSAGE = (By.TAG_NAME, 'h1')
+    SUCCESS_MESSAGE = (By.XPATH, '//*[contains(text(), "account has been successfully created")]')
 
 
 class CatalogPageLocators:
@@ -50,7 +50,7 @@ class ProductCardPageLocators:
     """
     ADD_TO_CART_BUTTON = (By.CSS_SELECTOR, '#button-cart')
     DESCRIPTION_TAB = (By.CSS_SELECTOR, '#tab-description')
-    OPTIONS_DROPDOWN = (By.CSS_SELECTOR, '#input-option-226')
+    REVIEW_TAB = (By.CSS_SELECTOR, '#tab-review')
     PRODUCT_IMAGE = (By.CSS_SELECTOR, '.image.magnific-popup')
     QUANTITY_INPUT = (By.CSS_SELECTOR, '#input-quantity')
 

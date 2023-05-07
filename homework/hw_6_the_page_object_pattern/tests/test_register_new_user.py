@@ -1,13 +1,15 @@
+import allure
 import pytest
 
 from ..pages.registration_page import RegistrationPage
 
 
+@allure.title('Регистрация нового пользователя')
 @pytest.mark.register_new_user
 @pytest.mark.parametrize('user', [
     ('Guido', 'van Rossum', 'gvanrossum@python.com', 'gvanrossum'),
     ('Joe', 'Rogan', 'joerogan@python.com', 'joerogan'),
-    ('James', 'James', 'jameshetfield@python.com', 'jameshetfield'),
+    ('James', 'Hetfield', 'jameshetfield@python.com', 'jameshetfield'),
     ('Frank', 'Ocean', 'frankocean@python.com', 'frankocean'),
     ('Clint', 'Eastwood', 'clinteastwood@python.com', 'clinteastwood')
 ])

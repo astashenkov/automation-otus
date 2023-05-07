@@ -1,4 +1,6 @@
 import time
+
+import allure
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.keys import Keys
@@ -13,6 +15,7 @@ class RegistrationPage(MainPage):
         super().__init__(driver)
         self._url = urljoin(driver.browser_base_url, '/en-gb?route=account/register')
 
+    @allure.step('Заполняю информацию о новом юзере')
     def fill_out_the_required_registration_data(self, *data) -> None:
         first_name, last_name, email, password = data
         WebDriverWait(self._driver, 2).until(
@@ -28,6 +31,7 @@ class RegistrationPage(MainPage):
             EC.presence_of_element_located(RegisterPageLocators.PASSWORD_INPUT)
         ).send_keys(password)
 
+    @allure.step('Активирую чекбокс согласия с политикой безопасности')
     def activate_privacy_policy_checkbox(self) -> None:
         privacy_policy_checkbox = WebDriverWait(self._driver, 2).until(
             EC.presence_of_element_located(RegisterPageLocators.PRIVACY_POLICY)
@@ -35,14 +39,18 @@ class RegistrationPage(MainPage):
         self._driver.execute_script("arguments[0].scrollIntoView();", privacy_policy_checkbox)
         privacy_policy_checkbox.send_keys(Keys.SPACE)
 
+    @allure.step('Нажимаю кнопку Submit для регистрации юзера')
     def click_submit_button(self) -> None:
         WebDriverWait(self._driver, 2).until(
             EC.presence_of_element_located(RegisterPageLocators.SUBMIT_BUTTON)
         ).click()
 
+    @allure.step('Проверяю создан ли юзер')
     def is_success_created_account(self) -> bool:
-        time.sleep(3)  # Waiting to go to the page with the message about successful user creation
-        created_message = self._driver.find_element(*RegisterPageLocators.SUCCESS_MESSAGE).text
-        if created_message == 'Your Account Has Been Created!':
+        try:
+            WebDriverWait(self._driver, 3).until(
+                EC.presence_of_element_located(RegisterPageLocators.SUCCESS_MESSAGE)
+            )
             return True
-        return False
+        except TimeoutError:
+            return False

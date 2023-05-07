@@ -1,2 +1,4 @@
 geckodriver.log
+allure-results
+allure-report
 .pytest_cache
