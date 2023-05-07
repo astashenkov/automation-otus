@@ -1,3 +1,6 @@
+import json
+
+import allure
 import pytest
 
 from selenium import webdriver
@@ -50,6 +53,12 @@ def driver(request):
 
     driver.browser_base_url = request.config.getoption('url')
     driver.maximize_window()
+
+    allure.attach(
+        name=driver.session_id,
+        body=json.dumps(driver.capabilities, indent=2, ensure_ascii=False),
+        attachment_type=allure.attachment_type.JSON
+    )
 
     yield driver
 

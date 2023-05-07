@@ -4,7 +4,7 @@ import pytest
 from ..pages.registration_page import RegistrationPage
 
 
-@allure.title('Регистрация нового пользователя')
+@allure.title('New user registration')
 @pytest.mark.register_new_user
 @pytest.mark.parametrize('user', [
     ('Guido', 'van Rossum', 'gvanrossum@python.com', 'gvanrossum'),

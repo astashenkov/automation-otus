@@ -32,12 +32,11 @@ class RegisterPageLocators:
 class CatalogPageLocators:
     """
     This is a class with locators for catalog page.
-    Here you can find locators for "compare", "sort by", "show" and "grid" buttons.
-    There is also a locator for the page pagination.
+    Here you can find locators for "compare", "sort by", "show", "list" and "grid" buttons.
     """
     COMPARE_BUTTON = (By.CSS_SELECTOR, '#compare-total')
     GRID_BUTTON = (By.CSS_SELECTOR, '#button-grid')
-    PAGE_PAGINATION = (By.CSS_SELECTOR, '.pagination')
+    LIST_BUTTON = (By.CSS_SELECTOR, '#button-list')
     SHOW_BUTTON = (By.XPATH, '//*[@for="input-limit"]')
     SORT_BY_BUTTON = (By.XPATH, '//*[@for="input-sort"]')
 
@@ -45,7 +44,7 @@ class CatalogPageLocators:
 class ProductCardPageLocators:
     """
     This is a class with locators for product card page.
-    Here you can find locators for chose options, go to the description tab, quantity input,
+    Here you can find locators for go to the description and review tabs, quantity input,
     "add to cart" button and image of a product.
     """
     ADD_TO_CART_BUTTON = (By.CSS_SELECTOR, '#button-cart')

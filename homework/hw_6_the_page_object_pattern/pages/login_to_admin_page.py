@@ -1,4 +1,6 @@
 from urllib.parse import urljoin
+
+import allure
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
@@ -12,6 +14,7 @@ class LoginToAdminPage(MainPage):
         super().__init__(driver)
         self._url = urljoin(driver.browser_base_url, '/administration')
 
+    @allure.step('Logging in to my admin account')
     def login(self) -> 'AdminPage':
         WebDriverWait(self._driver, 2).until(
             EC.presence_of_element_located(LoginAdminPageLocators.FIRST_NAME_INPUT)

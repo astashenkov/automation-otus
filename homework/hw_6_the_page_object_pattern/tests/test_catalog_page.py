@@ -14,12 +14,12 @@ class TestCatalogPage:
             CatalogPageLocators.COMPARE_BUTTON
         ), 'Compare button is not present on catalog page.'
 
-    def test_page_pagination_present(self, driver):
+    def test_list_button_present(self, driver):
         catalog_page = CatalogPage(driver)
         catalog_page.open()
         assert catalog_page.is_element_present(
-            CatalogPageLocators.PAGE_PAGINATION
-        ), 'Page pagination is not present on catalog page.'
+            CatalogPageLocators.LIST_BUTTON
+        ), 'List button is not present on catalog page.'
 
     def test_sort_by_button_present(self, driver):
         catalog_page = CatalogPage(driver)

@@ -1,8 +1,9 @@
 import time
+
+import allure
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.alert import Alert
-from selenium.webdriver.common.by import By
 from .locators import AdminPageLocators
 
 
@@ -11,11 +12,13 @@ class AdminPage:
         self._driver = driver
         self._url = url
 
+    @allure.step('Opening the product catalog')
     def open_products_page(self) -> None:
         self._driver.get(
             self._driver.current_url.replace('common/dashboard', 'catalog/product').replace('.form', '')
         )
 
+    @allure.step('Removing the top product from the table')
     def delete_upper_product(self) -> str:
         WebDriverWait(self._driver, 2).until(
             EC.presence_of_element_located(AdminPageLocators.UPPER_PRODUCT_CHECKBOX)
@@ -31,6 +34,7 @@ class AdminPage:
 
         return deleted_product_title
 
+    @allure.step('Creating a new product')
     def create_new_product(self):
         WebDriverWait(self._driver, 2).until(
             EC.presence_of_element_located(AdminPageLocators.ADD_NEW_PRODUCT_BUTTON)
