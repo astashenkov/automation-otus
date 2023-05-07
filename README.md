@@ -4,7 +4,7 @@ This repository contains completed homework assignments for the "Python QA Engin
 
 ## Repository Structure
 
-Each homework assignment is located in a directory with the name hw_<homework number>_<homework topiс>. Each directory contains the necessary files for completing the assignment and a README.md file describing what needs to be done and how to check the completed work.
+Each homework assignment is located in a directory with the name hw_homework number_homework topiс. Each directory contains the necessary files for completing the assignment and a README.md file describing what needs to be done and how to check the completed work.
 
 The **master** branch contains common files and instructions that are necessary for completing all homework assignments. In this branch, you will find instructions for installing and configuring the necessary software, as well as other useful information.
 
