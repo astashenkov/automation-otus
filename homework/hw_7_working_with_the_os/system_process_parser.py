@@ -2,8 +2,6 @@ import subprocess
 from datetime import datetime
 from operator import itemgetter
 
-print('Start of processing\n...')
-
 current_processes = subprocess.run(['ps', 'aux'], capture_output=True, text=True, check=True).stdout
 lines = current_processes.split('\n')
 
@@ -18,10 +16,12 @@ user_processes = {}
 for line in lines[1:]:
     if line:
         values = line.split()
+        cpu = float(values[2])
+        mem = float(values[3])
 
         current_processes_count += 1
-        total_cpu += float(values[2])
-        total_memory += float(values[3])
+        total_cpu += cpu
+        total_memory += mem
 
         user = values[0]
         users.add(user)
@@ -29,12 +29,12 @@ for line in lines[1:]:
         user_processes.setdefault(user, 0)
         user_processes[user] += 1
 
-        if float(values[3]) > max_memory_process[0]:
-            max_memory_process[0] = float(values[3])
+        if mem > max_memory_process[0]:
+            max_memory_process[0] = mem
             max_memory_process[1] = values[10]
 
-        if float(values[2]) > max_cpu_process[0]:
-            max_cpu_process[0] = float(values[2])
+        if cpu > max_cpu_process[0]:
+            max_cpu_process[0] = cpu
             max_cpu_process[1] = values[10]
 
 report = "Отчёт о состоянии системы\n\n"
@@ -55,4 +55,4 @@ filename = f"{current_datetime}-scan.txt"
 with open(filename, 'w', encoding='utf-8') as file:
     file.write(report)
 
-print('DONE')
+print(report)
