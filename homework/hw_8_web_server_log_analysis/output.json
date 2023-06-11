@@ -1,0 +1,131 @@
+[
+    {
+        "Log file": "access1.log",
+        "Total completed requests": 3216723,
+        "Number of requests by HTTP methods": {
+            "GET": 2247848,
+            "POST": 918794,
+            "HEAD": 49971,
+            "PUT": 70,
+            "OPTIONS": 39,
+            "DELETE": 1
+        },
+        "Top 3 IP addresses from which requests were made": {
+            "193.106.31.130": 235209,
+            "198.50.156.189": 167812,
+            "5.112.235.245": 166722
+        },
+        "Top 3 longest requests": [
+            {
+                "ip": "100.1.14.108",
+                "method": "GET",
+                "url": "-",
+                "date": "23/Sep/2019",
+                "time": "18:42:51",
+                "duration": 10000
+            },
+            {
+                "ip": "100.1.14.108",
+                "method": "GET",
+                "url": "-",
+                "date": "23/Sep/2019",
+                "time": "17:48:33",
+                "duration": 9999
+            },
+            {
+                "ip": "100.1.14.108",
+                "method": "HEAD",
+                "url": "-",
+                "date": "23/Sep/2019",
+                "time": "01:42:59",
+                "duration": 9998
+            }
+        ]
+    },
+    {
+        "Log file": "access2.log",
+        "Total completed requests": 3216723,
+        "Number of requests by HTTP methods": {
+            "GET": 2247848,
+            "POST": 918794,
+            "HEAD": 49971,
+            "PUT": 70,
+            "OPTIONS": 39,
+            "DELETE": 1
+        },
+        "Top 3 IP addresses from which requests were made": {
+            "193.106.31.130": 235209,
+            "198.50.156.189": 167812,
+            "5.112.235.245": 166722
+        },
+        "Top 3 longest requests": [
+            {
+                "ip": "100.1.14.108",
+                "method": "GET",
+                "url": "-",
+                "date": "23/Sep/2019",
+                "time": "18:42:51",
+                "duration": 10000
+            },
+            {
+                "ip": "100.1.14.108",
+                "method": "GET",
+                "url": "-",
+                "date": "23/Sep/2019",
+                "time": "17:48:33",
+                "duration": 9999
+            },
+            {
+                "ip": "100.1.14.108",
+                "method": "HEAD",
+                "url": "-",
+                "date": "23/Sep/2019",
+                "time": "01:42:59",
+                "duration": 9998
+            }
+        ]
+    },
+    {
+        "Log file": "access.log",
+        "Total completed requests": 3216723,
+        "Number of requests by HTTP methods": {
+            "GET": 2247848,
+            "POST": 918794,
+            "HEAD": 49971,
+            "PUT": 70,
+            "OPTIONS": 39,
+            "DELETE": 1
+        },
+        "Top 3 IP addresses from which requests were made": {
+            "193.106.31.130": 235209,
+            "198.50.156.189": 167812,
+            "5.112.235.245": 166722
+        },
+        "Top 3 longest requests": [
+            {
+                "ip": "100.1.14.108",
+                "method": "GET",
+                "url": "-",
+                "date": "23/Sep/2019",
+                "time": "18:42:51",
+                "duration": 10000
+            },
+            {
+                "ip": "100.1.14.108",
+                "method": "GET",
+                "url": "-",
+                "date": "23/Sep/2019",
+                "time": "17:48:33",
+                "duration": 9999
+            },
+            {
+                "ip": "100.1.14.108",
+                "method": "HEAD",
+                "url": "-",
+                "date": "23/Sep/2019",
+                "time": "01:42:59",
+                "duration": 9998
+            }
+        ]
+    }
+]
