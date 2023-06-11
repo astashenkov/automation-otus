@@ -2,7 +2,6 @@ import os
 import json
 import argparse
 from dataclasses import dataclass
-from sys import argv
 
 
 @dataclass
