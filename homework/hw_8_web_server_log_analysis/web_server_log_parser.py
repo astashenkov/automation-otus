@@ -36,7 +36,7 @@ def total_http_requests(file) -> dict:
     result: dict = {}
 
     for line in file:
-        request.method = line.split()[5][1:]
+        request.method = re.search(r'\b(GET|POST|HEAD|PUT|DELETE|OPTIONS|PATCH|CONNECT)\b', line)[0]
         method_counter.setdefault(request.method, 0)
         method_counter[request.method] += 1
 
@@ -74,7 +74,7 @@ def three_longest_requests(file) -> list:
         all_requests.append(RequestInfo(
             ip=re.search(r'([0-9]{1,3}[\.]){3}[0-9]{1,3}', line)[0],
             duration=int(re.search(r'\b(\d+)\b$', line)[0]),
-            method=line.split()[5][1:],
+            method=re.search(r'\b(GET|POST|HEAD|PUT|DELETE|OPTIONS|PATCH|CONNECT)\b', line)[0],
             url=line.split()[10][1:-1],
             date=re.search(r'\d{2}/\w{3}/\d{4}', line)[0],
             time=re.search(r'\d{2}:\d{2}:\d{2}', line)[0]
