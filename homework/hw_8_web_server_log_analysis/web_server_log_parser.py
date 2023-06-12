@@ -1,14 +1,15 @@
 import os
+import re
 import json
 import argparse
-from dataclasses import dataclass
+from dataclasses import dataclass, asdict
 
 
 @dataclass
 class RequestInfo:
     """Dataclass to define the request structure."""
     ip: str = ''
-    duration: str = ''
+    duration: int = 0
     method: str = ''
     url: str = ''
     date: str = ''
@@ -52,7 +53,7 @@ def three_most_frequently_used_ip(file) -> dict:
 
     all_ips: dict = {}
     for line in file:
-        request.ip = line.split()[0]
+        request.ip = re.search(r'([0-9]{1,3}[\.]){3}[0-9]{1,3}', line)[0]
         all_ips.setdefault(request.ip, 0)
         all_ips[request.ip] += 1
 
@@ -67,33 +68,20 @@ def three_most_frequently_used_ip(file) -> dict:
 def three_longest_requests(file) -> list:
     """Calculation of the top 3 longest requests."""
     file.seek(0)
-    request = RequestInfo()
 
-    all_requests: dict = {}
+    all_requests: list = []
     for line in file:
-        request.duration = int(line.split()[-1])
-        request.ip = line.split()[0]
-        request.method = line.split()[5][1:]
-        request.url = line.split()[10][1:-1]
-        request.date = line.split()[3][1:12]
-        request.time = line.split()[3][13:]
+        all_requests.append(RequestInfo(
+            ip=re.search(r'([0-9]{1,3}[\.]){3}[0-9]{1,3}', line)[0],
+            duration=int(re.search(r'\b(\d+)\b$', line)[0]),
+            method=line.split()[5][1:],
+            url=line.split()[10][1:-1],
+            date=re.search(r'\d{2}/\w{3}/\d{4}', line)[0],
+            time=re.search(r'\d{2}:\d{2}:\d{2}', line)[0]
+        ))
 
-        all_requests[request.duration] = {
-            'ip': request.ip,
-            'method': request.method,
-            'url': request.url,
-            'date': request.date,
-            'time': request.time
-        }
-
-    top_three_delay_request: list = []
-    sorted_request: list = sorted(all_requests.items(), reverse=True)
-    for i in range(3):
-        updated_request = sorted_request[i][1]
-        updated_request['duration'] = sorted_request[i][0]
-        top_three_delay_request.append(updated_request)
-
-    return top_three_delay_request
+    sorted_request: list = sorted(all_requests, key=lambda r: r.duration, reverse=True)
+    return [asdict(req) for req in sorted_request[:3]]
 
 
 def parse_arguments():
@@ -141,7 +129,7 @@ if __name__ == '__main__':
             print(f'  {method}: {count}')
         print('Top 3 IP addresses from which requests were made:')
         for ip, count in result['Top 3 IP addresses from which requests were made'].items():
-            print(f'  "{ip}" – {count}')
+            print(f'  {ip}: {count}')
         print('Top 3 longest requests:')
         for request in result['Top 3 longest requests']:
             print(f'  Method: {request["method"]}')

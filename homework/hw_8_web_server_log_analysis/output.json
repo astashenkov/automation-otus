@@ -1,48 +1,5 @@
 [
     {
-        "Log file": "access1.log",
-        "Total completed requests": 3216723,
-        "Number of requests by HTTP methods": {
-            "GET": 2247848,
-            "POST": 918794,
-            "HEAD": 49971,
-            "PUT": 70,
-            "OPTIONS": 39,
-            "DELETE": 1
-        },
-        "Top 3 IP addresses from which requests were made": {
-            "193.106.31.130": 235209,
-            "198.50.156.189": 167812,
-            "5.112.235.245": 166722
-        },
-        "Top 3 longest requests": [
-            {
-                "ip": "100.1.14.108",
-                "method": "GET",
-                "url": "-",
-                "date": "23/Sep/2019",
-                "time": "18:42:51",
-                "duration": 10000
-            },
-            {
-                "ip": "100.1.14.108",
-                "method": "GET",
-                "url": "-",
-                "date": "23/Sep/2019",
-                "time": "17:48:33",
-                "duration": 9999
-            },
-            {
-                "ip": "100.1.14.108",
-                "method": "HEAD",
-                "url": "-",
-                "date": "23/Sep/2019",
-                "time": "01:42:59",
-                "duration": 9998
-            }
-        ]
-    },
-    {
         "Log file": "access2.log",
         "Total completed requests": 3216723,
         "Number of requests by HTTP methods": {
@@ -60,28 +17,28 @@
         },
         "Top 3 longest requests": [
             {
-                "ip": "100.1.14.108",
-                "method": "GET",
+                "ip": "62.93.172.245",
+                "duration": 10000,
+                "method": "POST",
                 "url": "-",
-                "date": "23/Sep/2019",
-                "time": "18:42:51",
-                "duration": 10000
+                "date": "23/Dec/2015",
+                "time": "15:07:27"
             },
             {
-                "ip": "100.1.14.108",
+                "ip": "213.162.68.113",
+                "duration": 10000,
                 "method": "GET",
-                "url": "-",
-                "date": "23/Sep/2019",
-                "time": "17:48:33",
-                "duration": 9999
+                "url": "http://www.almhuette-raith.at/index.php?option=com_phocagallery&view=category&id=1&Itemid=53",
+                "date": "06/Jan/2016",
+                "time": "16:18:47"
             },
             {
-                "ip": "100.1.14.108",
-                "method": "HEAD",
-                "url": "-",
-                "date": "23/Sep/2019",
-                "time": "01:42:59",
-                "duration": 9998
+                "ip": "194.166.55.43",
+                "duration": 10000,
+                "method": "GET",
+                "url": "http://www.almhuette-raith.at/index.php?option=com_phocagallery&view=category&id=1&Itemid=53",
+                "date": "06/Jan/2016",
+                "time": "16:21:29"
             }
         ]
     },
@@ -103,28 +60,28 @@
         },
         "Top 3 longest requests": [
             {
-                "ip": "100.1.14.108",
-                "method": "GET",
+                "ip": "62.93.172.245",
+                "duration": 10000,
+                "method": "POST",
                 "url": "-",
-                "date": "23/Sep/2019",
-                "time": "18:42:51",
-                "duration": 10000
+                "date": "23/Dec/2015",
+                "time": "15:07:27"
             },
             {
-                "ip": "100.1.14.108",
+                "ip": "213.162.68.113",
+                "duration": 10000,
                 "method": "GET",
-                "url": "-",
-                "date": "23/Sep/2019",
-                "time": "17:48:33",
-                "duration": 9999
+                "url": "http://www.almhuette-raith.at/index.php?option=com_phocagallery&view=category&id=1&Itemid=53",
+                "date": "06/Jan/2016",
+                "time": "16:18:47"
             },
             {
-                "ip": "100.1.14.108",
-                "method": "HEAD",
-                "url": "-",
-                "date": "23/Sep/2019",
-                "time": "01:42:59",
-                "duration": 9998
+                "ip": "194.166.55.43",
+                "duration": 10000,
+                "method": "GET",
+                "url": "http://www.almhuette-raith.at/index.php?option=com_phocagallery&view=category&id=1&Itemid=53",
+                "date": "06/Jan/2016",
+                "time": "16:21:29"
             }
         ]
     }
