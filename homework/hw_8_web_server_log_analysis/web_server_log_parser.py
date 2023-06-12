@@ -77,7 +77,7 @@ def three_longest_requests(file) -> list:
             method=re.search(r'\b(GET|POST|HEAD|PUT|DELETE|OPTIONS|PATCH|CONNECT)\b', line)[0],
             url=line.split()[10][1:-1],
             date=re.search(r'\d{2}/\w{3}/\d{4}', line)[0],
-            time=re.search(r'\d{2}:\d{2}:\d{2}', line)[0]
+            time=re.search(r'\b\d{2}/\w+/\d{4}:(\d{2}:\d{2}:\d{2})\b', line).group(1)
         ))
 
     sorted_request: list = sorted(all_requests, key=lambda r: r.duration, reverse=True)
