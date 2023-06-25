@@ -32,7 +32,8 @@ def prepare_server_response(received_data: str, addr) -> str:
     method = headers[0].split()[0]
     status_code, status_phrase = get_status_code(headers[0])
 
-    server_response = f'Request Method: {method}\n'
+    server_response = f'HTTP/1.1 {status_code}\n\n'
+    server_response += f'Request Method: {method}\n'
     server_response += f'Request Source: {addr}\n'
     server_response += f'Response Status: {status_code} {status_phrase}\n'
 
