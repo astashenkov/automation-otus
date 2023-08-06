@@ -1,13 +1,10 @@
 FROM python:3.10-alpine
 
-WORKDIR tests
+WORKDIR /API_tests
 
-COPY requirements.txt .
+COPY . .
 
 RUN pip install -U pip
 RUN pip install -r requirements.txt
 
-COPY conftest.py .
-COPY test_py_server.py .
-
-ENTRYPOINT ["pytest"]
+CMD ["pytest"]
