@@ -1,14 +1,6 @@
 import pytest
 
 from selenium import webdriver
-from selenium.webdriver.chrome import service
-from selenium.webdriver.chrome.service import Service as ChromeService
-from selenium.webdriver.edge.service import Service as EdgeService
-from selenium.webdriver.firefox.service import Service as FirefoxService
-from webdriver_manager.chrome import ChromeDriverManager
-from webdriver_manager.firefox import GeckoDriverManager
-from webdriver_manager.microsoft import EdgeChromiumDriverManager
-from webdriver_manager.opera import OperaDriverManager
 
 
 def pytest_addoption(parser):
@@ -25,26 +17,18 @@ def pytest_addoption(parser):
 
 
 @pytest.fixture()
-def session(request):
+def driver(request):
     browser_name = request.config.getoption('browser').lower()
 
     match browser_name:
         case 'chrome':
-            driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()))
+            driver = webdriver.Chrome()
         case 'firefox':
-            driver = webdriver.Firefox(service=FirefoxService(GeckoDriverManager().install()))
+            driver = webdriver.Firefox()
         case 'safari':
             driver = webdriver.Safari()
-        case 'opera':
-            webdriver_service = service.Service(OperaDriverManager().install())
-            webdriver_service.start()
-
-            options = webdriver.ChromeOptions()
-            options.add_experimental_option('w3c', True)
-
-            driver = webdriver.Remote(webdriver_service.service_url, options=options)
         case 'edge':
-            driver = webdriver.Edge(service=EdgeService(EdgeChromiumDriverManager().install()))
+            driver = webdriver.Edge()
         case _:
             raise ValueError(f'Unsupported browser: {browser_name}')
 
