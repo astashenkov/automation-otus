@@ -55,6 +55,7 @@ class Page(DriverHelpers):
     def is_current_page(self) -> bool:
         return self.element_is_exist(self.page_detect_locator, timeout=self.DEFAULT_TIMEOUT)
 
+    @allure.step(f'Go to page {full_url}')
     def view(self) -> None:
         with allure.step(f'Navigate to {self.full_url}'):
             self.driver.get(self.full_url)

@@ -1,3 +1,5 @@
+import allure
+
 from components.pages.base_page import Page
 from helpers.locators import by_css
 
@@ -14,6 +16,7 @@ class MainPage(Page):
             page_detect_locator=self.LOCATOR_FEATURE_ITEMS
         )
 
+    @allure.step('Check is carousel slider exist')
     def is_carousel_slider_exist(self):
         try:
             self.custom_find_element(locator=self.LOCATOR_SLIDER_CAROUSEL)

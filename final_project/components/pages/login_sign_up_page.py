@@ -1,3 +1,5 @@
+import allure
+
 from components.pages.base_page import Page
 from helpers.locators import by_css
 
@@ -19,26 +21,32 @@ class LoginSignUpPage(Page):
             page_detect_locator=self.LOCATOR_LOGIN_FORM
         )
 
+    @allure.step('Fill login email input')
     def fill_login_email_input(self, text: str = 'test@gmail.com'):
         login_email_input = self.custom_find_element(locator=self.LOCATOR_LOGIN_EMAIL)
         login_email_input.send_keys(text)
 
+    @allure.step('Fill login password input')
     def fill_login_password_input(self, text: str = '123tesT'):
         login_password_input = self.custom_find_element(locator=self.LOCATOR_LOGIN_PASSWORD)
         login_password_input.send_keys(text)
 
+    @allure.step('Click login button')
     def click_login_button(self):
         login_button = self.custom_find_element(locator=self.LOCATOR_LOGIN_BUTTON)
         login_button.click()
 
+    @allure.step('Fill signup name input')
     def fill_signup_name_input(self, text: str = 'tester'):
         signup_name_input = self.custom_find_element(locator=self.LOCATOR_SIGNUP_NAME)
         signup_name_input.send_keys(text)
 
+    @allure.step('Fill signup email input')
     def fill_signup_email_input(self, text: str = 'test@gmail.com'):
         signup_email_input = self.custom_find_element(locator=self.LOCATOR_SIGNUP_EMAIL)
         signup_email_input.send_keys(text)
 
+    @allure.step('Click signup button')
     def click_signup_button(self):
         signup_button = self.custom_find_element(locator=self.LOCATOR_SIGNUP_BUTTON)
         signup_button.click()
