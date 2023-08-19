@@ -16,7 +16,7 @@ def pytest_addoption(parser):
     )
     parser.addoption(
         '--url',
-        default='https://www.automationexercise.com/',
+        default='https://www.automationexercise.com',
         help='Choose base URL'
     )
     parser.addoption(
@@ -65,5 +65,5 @@ def driver(request):
 
 
 @pytest.fixture()
-def base_url(request):
-    return request.config.getoption("--base_url")
+def base_url(request) -> str:
+    return request.config.getoption("--url")

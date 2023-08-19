@@ -7,7 +7,7 @@ from helpers.locators import Locator
 from helpers.driver_helpers import DriverHelpers
 
 
-class Page:
+class Page(DriverHelpers):
     LOCATOR_MAIN_MENU = by_css('.shop-menu')
     LOCATOR_MAIN_LOGO = by_css('.logo')
 
@@ -15,12 +15,13 @@ class Page:
             self,
             driver,
             rel_url: str = '',
+            root_url: str = '',
             full_url: str | None = '',
             page_detect_locator: Optional['Locator'] = None,
     ):
-
         self.driver = driver
         self.rel_url = rel_url
+        self.root_url = root_url
         self._full_url = full_url
         self._page_detect_locator = page_detect_locator
 
@@ -33,12 +34,6 @@ class Page:
 
         if not full_url:
             full_url = f'{self.root_url}{self.rel_url}'
-
-        if self._url_parameters:
-            is_param_exist = len(full_url.split('&')) > 1
-            full_url = f'{full_url}?{self._url_parameters}'
-            if is_param_exist:
-                full_url = f'{full_url}&{self._url_parameters}'
 
         return full_url
 
@@ -58,7 +53,7 @@ class Page:
 
     @property
     def is_current_page(self) -> bool:
-        return self.driver.element_is_exist(self.page_detect_locator)
+        return self.element_is_exist(self.page_detect_locator, timeout=self.DEFAULT_TIMEOUT)
 
     def view(self) -> None:
         with allure.step(f'Navigate to {self.full_url}'):
