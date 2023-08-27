@@ -22,7 +22,7 @@ def pytest_addoption(parser):
     )
     parser.addoption(
         '--url',
-        default='http://192.168.0.40:8081/',
+        default='https://demo.opencart.com',
         help='Choose base URL'
     )
 
