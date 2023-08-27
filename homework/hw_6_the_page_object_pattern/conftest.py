@@ -22,7 +22,7 @@ def pytest_addoption(parser):
     )
     parser.addoption(
         '--url',
-        default='http://localhost:8080/',
+        default='http://localhost/',
         help='Choose base URL'
     )
 
