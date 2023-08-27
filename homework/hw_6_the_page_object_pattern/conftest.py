@@ -17,12 +17,12 @@ from webdriver_manager.opera import OperaDriverManager
 def pytest_addoption(parser):
     parser.addoption(
         '--browser',
-        default='chrome',
+        default='firefox',
         help='Choose browser: Chrome, FireFox, Safari, Opera or Edge.'
     )
     parser.addoption(
         '--url',
-        default='https://demo.opencart.com',
+        default='http://localhost:8080/',
         help='Choose base URL'
     )
 
