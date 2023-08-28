@@ -23,3 +23,11 @@ class MainPage(Page):
         except TimeoutError:
             return False
         return True
+
+    @allure.step('Check is features items on page')
+    def is_features_items_on_page(self):
+        try:
+            self.custom_find_element(locator=self.LOCATOR_FEATURE_ITEMS)
+        except TimeoutError:
+            return False
+        return True

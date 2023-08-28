@@ -1,6 +1,7 @@
 from components.pages.login_sign_up_page import LoginSignUpPage
 
 
+@pytest.mark.login_and_sign_in
 class TestLoginAndSignUp:
 
     def test_user_signup(self, driver, base_url):
@@ -13,7 +14,7 @@ class TestLoginAndSignUp:
         signup_page.fill_signup_email_input()
         signup_page.click_signup_button()
 
-    # ToDo: Понять как создавать и удалять тестового юзера. Добавить проверку регистрации
+        assert signup_page.is_user_signed_up(), 'The user is not signed up.'
 
     def test_user_login(self, driver, base_url):
         login_page = LoginSignUpPage(driver=driver, root_url=base_url)
@@ -25,4 +26,4 @@ class TestLoginAndSignUp:
         login_page.fill_login_password_input()
         login_page.click_login_button()
 
-    # ToDo: Понять как создавать и удалять тестового юзера. Добавить проверку логина
+        assert login_page.is_user_logged(), 'The user is not logged in.'

@@ -12,6 +12,8 @@ class LoginSignUpPage(Page):
     LOCATOR_SIGNUP_NAME = by_css('[data-qa="signup-name"]')
     LOCATOR_SIGNUP_EMAIL = by_css('[data-qa="signup-email"]')
     LOCATOR_SIGNUP_BUTTON = by_css('[data-qa="signup-button"]')
+    LOCATOR_SUCCESS_LOGGED_USER = by_css('.login-form')
+    LOCATOR_SUCCESS_SIGNED_UP_USER = by_css('.login-form')
 
     def __init__(self, driver, root_url):
         super().__init__(
@@ -50,3 +52,19 @@ class LoginSignUpPage(Page):
     def click_signup_button(self):
         signup_button = self.custom_find_element(locator=self.LOCATOR_SIGNUP_BUTTON)
         signup_button.click()
+
+    @allure.step('Check the user login')
+    def is_user_logged(self):
+        try:
+            self.custom_find_element(locator=self.LOCATOR_SUCCESS_LOGGED_USER)
+        except TimeoutError:
+            return False
+        return True
+
+    @allure.step('Check the user signed up')
+    def is_user_signed_up(self):
+        try:
+            self.custom_find_element(locator=self.LOCATOR_SUCCESS_SIGNED_UP_USER)
+        except TimeoutError:
+            return False
+        return True

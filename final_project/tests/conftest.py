@@ -11,7 +11,7 @@ from selenium.webdriver.safari.options import Options as SafariOptions
 def pytest_addoption(parser):
     parser.addoption(
         '--browser',
-        default='chrome',
+        default='firefox',
         help='Choose browser: Chrome, FireFox, Safari or Edge'
     )
     parser.addoption(
@@ -33,29 +33,28 @@ def driver(request):
 
     service = Service()
 
-    match browser_name:
-        case 'chrome':
-            options = ChromeOptions()
-            if headless:
-                options.add_argument('-headless')
-            driver = webdriver.Chrome(service=service, options=options)
-        case 'firefox':
-            options = FirefoxOptions()
-            if headless:
-                options.add_argument('-headless')
-            driver = webdriver.Firefox(service=service, options=options)
-        case 'safari':
-            options = SafariOptions()
-            if headless:
-                options.add_argument('-headless')
-            driver = webdriver.Safari(service=service, options=options)
-        case 'edge':
-            options = EdgeOptions()
-            if headless:
-                options.add_argument('-headless')
-            driver = webdriver.Edge(service=service, options=options)
-        case _:
-            raise ValueError(f'Unsupported browser: {browser_name}')
+    if browser_name == 'chrome':
+        options = ChromeOptions()
+        if headless:
+            options.add_argument('-headless')
+        driver = webdriver.Chrome(service=service, options=options)
+    elif browser_name == 'firefox':
+        options = FirefoxOptions()
+        if headless:
+            options.add_argument('-headless')
+        driver = webdriver.Firefox(service=service, options=options)
+    elif browser_name == 'safari':
+        options = SafariOptions()
+        if headless:
+            options.add_argument('-headless')
+        driver = webdriver.Safari(service=service, options=options)
+    elif browser_name == 'edge':
+        options = EdgeOptions()
+        if headless:
+            options.add_argument('-headless')
+        driver = webdriver.Edge(service=service, options=options)
+    else:
+        raise ValueError(f'Unsupported browser: {browser_name}')
 
     driver.maximize_window()
 
