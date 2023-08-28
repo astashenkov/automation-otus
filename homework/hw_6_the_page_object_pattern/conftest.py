@@ -17,12 +17,12 @@ from webdriver_manager.opera import OperaDriverManager
 def pytest_addoption(parser):
     parser.addoption(
         '--browser',
-        default='chrome',
+        default='firefox',
         help='Choose browser: Chrome, FireFox, Safari, Opera or Edge.'
     )
     parser.addoption(
         '--url',
-        default='http://192.168.0.40:8081/',
+        default='http://localhost/',
         help='Choose base URL'
     )
 
@@ -31,25 +31,24 @@ def pytest_addoption(parser):
 def driver(request):
     browser_name = request.config.getoption('browser').lower()
 
-    match browser_name:
-        case 'chrome':
-            driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()))
-        case 'firefox':
-            driver = webdriver.Firefox(service=FirefoxService(GeckoDriverManager().install()))
-        case 'safari':
-            driver = webdriver.Safari()
-        case 'opera':
-            webdriver_service = service.Service(OperaDriverManager().install())
-            webdriver_service.start()
+    if browser_name == 'chrome':
+        driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()))
+    elif browser_name == 'firefox':
+        driver = webdriver.Firefox(service=FirefoxService(GeckoDriverManager().install()))
+    elif browser_name == 'safari':
+        driver = webdriver.Safari()
+    elif browser_name == 'opera':
+        webdriver_service = service.Service(OperaDriverManager().install())
+        webdriver_service.start()
 
-            options = webdriver.ChromeOptions()
-            options.add_experimental_option('w3c', True)
+        options = webdriver.ChromeOptions()
+        options.add_experimental_option('w3c', True)
 
-            driver = webdriver.Remote(webdriver_service.service_url, options=options)
-        case 'edge':
-            driver = webdriver.Edge(service=EdgeService(EdgeChromiumDriverManager().install()))
-        case _:
-            raise ValueError(f'Unsupported browser: {browser_name}')
+        driver = webdriver.Remote(webdriver_service.service_url, options=options)
+    elif browser_name == 'edge':
+        driver = webdriver.Edge(service=EdgeService(EdgeChromiumDriverManager().install()))
+    else:
+        raise ValueError(f'Unsupported browser: {browser_name}')
 
     driver.browser_base_url = request.config.getoption('url')
     driver.maximize_window()
