@@ -1,0 +1,24 @@
+pipeline {
+  stages {
+         stage('Get Code') {
+            steps {
+                 git 'https://github.com/astashenkov/automation-otus/'
+            }
+         }
+    stage('build') {
+      steps {
+        sh 'pip3 install -r ./homework/hw_6_the_page_object_pattern/requirements.txt'
+      }
+    }
+    stage('test') {
+      steps {
+        sh 'python3 -m pytest ${TESTS_PATH} --browser ${BROWSER} --base_url ${OPENCART_URL}'
+      }
+      post {
+        always {
+          junit 'test-reports/*.xml'
+        }
+      }
+    }
+  }
+}
