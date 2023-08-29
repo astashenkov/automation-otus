@@ -12,8 +12,8 @@ class DriverHelpers:
     def custom_find_element(
             self,
             locator: 'Locator',
-            timeout: int | float = DEFAULT_TIMEOUT,
-            poll_frequency: int | float = POLL_FREQUENCY
+            timeout=DEFAULT_TIMEOUT,
+            poll_frequency=POLL_FREQUENCY
     ):
         wait = WebDriverWait(self.driver, timeout=timeout, poll_frequency=poll_frequency)
         return wait.until(EC.presence_of_element_located(locator))

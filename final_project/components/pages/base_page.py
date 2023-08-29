@@ -16,7 +16,7 @@ class Page(DriverHelpers):
             driver,
             rel_url: str = '',
             root_url: str = '',
-            full_url: str | None = '',
+            full_url: str = '',
             page_detect_locator: Optional['Locator'] = None,
     ):
         self.driver = driver
