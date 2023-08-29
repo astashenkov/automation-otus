@@ -1,3 +1,5 @@
+import pytest
+
 from components.pages.login_sign_up_page import LoginSignUpPage
 
 
