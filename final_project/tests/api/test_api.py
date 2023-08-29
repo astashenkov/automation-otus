@@ -1,4 +1,5 @@
 import pytest
+import allure
 
 import cerberus
 import requests
@@ -19,12 +20,14 @@ class TestApi:
         'user': {'type': 'dict'}
     }
 
+    @allure.step('GET products list')
     def test_get_products_list(self):
         response = requests.get(url=self.PRODUCTS_LIST_URL)
 
         assert response.status_code == 200, f'Request is failed with status {response.status_code}.'
         assert len(response.json()['products']) > 0, 'Empty products fild received.'
 
+    @allure.step('POST products list')
     def test_post_products_list(self):
         response = requests.post(url=self.PRODUCTS_LIST_URL)
         schema_validator = cerberus.Validator(self.SCHEMA_RESPONSE)
@@ -33,6 +36,7 @@ class TestApi:
         assert schema_validator(response.json()), f'Wrong JSON response schema: {schema_validator.errors}.'
         assert response.json()['message'], 'This request method is not supported.'
 
+    @allure.step('GET user ditail')
     def test_get_user_detail(self):
         response = requests.get(url=self.USER_DETAIL_URL, params={'email': 'test@test.com'})
         schema_validator = cerberus.Validator(self.USER_SCHEMA)
@@ -42,6 +46,7 @@ class TestApi:
         assert schema_validator(response.json()), f'Wrong JSON response schema: {schema_validator.errors}.'
         assert response.json()['user']['email'] == 'test@test.com', 'Wrong user received.'
 
+    @allure.step('Check different codes from response')
     @pytest.mark.parametrize('status_code', [
         (404, False),
         (200, True),
@@ -49,7 +54,7 @@ class TestApi:
         (301, False),
         (302, False)
     ])
-    def test_multiple_images_from_sub_breed_collection(self, status_code):
+    def test_different_codes_from_response(self, status_code):
         response = requests.get(self.PRODUCTS_LIST_URL)
         checking_code = response.status_code == status_code[0]
 

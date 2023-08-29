@@ -1,4 +1,6 @@
 import pytest
+import allure
+import json
 
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
@@ -57,6 +59,12 @@ def driver(request):
         raise ValueError(f'Unsupported browser: {browser_name}')
 
     driver.maximize_window()
+
+    allure.attach(
+        name=driver.session_id,
+        body=json.dumps(driver.capabilities, indent=2, ensure_ascii=False),
+        attachment_type=allure.attachment_type.JSON
+    )
 
     yield driver
 
