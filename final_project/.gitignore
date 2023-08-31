@@ -1,0 +1,15 @@
+.idea
+.vscode
+.cache
+.pytest_cache
+.mypy_cache
+__pycache__/
+*.py[cod]
+.DS_Store
+venv
+
+selenium-env
+allure-results
+allure-report
+
+*.log
