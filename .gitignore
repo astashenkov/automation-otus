@@ -8,5 +8,7 @@ __pycache__
 # Files
 *.pyc[cod]
 *.log
+cm
+*.key
 tests/working_with_test_data/books.csv
 tests/working_with_test_data/users.json
